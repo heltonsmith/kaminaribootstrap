@@ -1,0 +1,57 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Posts</h1>
+
+<button type="button" 
+        class="btn btn-lg btn-danger" 
+        data-bs-toggle="popover" 
+        title="Popover title" 
+        data-bs-content="Amazing content, right ?">
+        Click to toggle popover
+</button> 
+
+<nav class="navbar navbar-light bg-light justify-content-between">
+  <form class="form-inline">
+    Author
+    <input class="form-control mr-sm-2" type="search" placeholder="Author" aria-label="Author" name="author">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</nav>
+
+<% if @posts.count > 0 %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <td>title</td>
+      <td>Content</td>
+      <td>Author</td>
+      <td>Ver</td>
+    </tr>
+  </thead>
+
+  <div id="posts">
+    <% @posts.each do |post| %>
+        <tr>
+          <td><%= post.title %></td>
+          <td><%= post.content %></td>
+          <td><%= post.author %></td>
+          <td><%= link_to "Show this post", post %></td>
+        </tr>
+    <% end %>
+  </div>
+
+</table>
+<br><br>
+
+<%= paginate(@posts) %>
+
+<br><br>
+
+<% else %>
+
+<h1>No hay registros</h1>
+
+<% end %>
+
+<%= link_to "New post", new_post_path %>
